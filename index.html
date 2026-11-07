@@ -157,19 +157,21 @@
 </div>
 <script>
 function go(page){
- document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));
- document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
- window.scrollTo({top:0,behavior:'smooth'});
+document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));
+document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+window.scrollTo({top:0,behavior:'smooth'});
 }
-document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>goPage(b.dataset.page)));
+
 document.getElementById('levelFilter').addEventListener('change',function(){
  const level=this.value;
  document.querySelectorAll('#subjectList .card').forEach(card=>{
   card.style.display=(level==='All levels'||card.dataset.level.includes(level))?'':'none';
  });
 });
+
 document.getElementById('bookSearch').addEventListener('input',function(){
  const q=this.value.toLowerCase();
  document.querySelectorAll('.book').forEach(card=>card.style.display=card.innerText.toLowerCase().includes(q)?'':'none');
 });
-document.getElem
